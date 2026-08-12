@@ -1,0 +1,1 @@
+import{store,getToken}from'./_common.mjs';export default async req=>{const t=getToken(req);if(t)await store.delete(`sessions/${t}`);return new Response(JSON.stringify({ok:true}),{headers:{'content-type':'application/json','set-cookie':'uit_session=; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=0'}})};export const config={path:'/api/logout'};
