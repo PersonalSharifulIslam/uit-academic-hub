@@ -1,0 +1,1 @@
+import{json,currentUser}from'./_common.mjs';export default async req=>{const u=await currentUser(req);if(!u)return json({user:null});const s={...u};delete s.passwordHash;return json({user:s})};export const config={path:'/api/auth'};
