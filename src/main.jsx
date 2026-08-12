@@ -1,0 +1,2 @@
+import React from 'react';import{createRoot}from'react-dom/client';import Home from'./Home.jsx';import Dashboard from'./Dashboard.jsx';import'./styles.css';
+function Root(){const [user,setUser]=React.useState(null);React.useEffect(()=>{fetch('/api/auth').then(r=>r.json()).then(d=>setUser(d.user)).catch(()=>{})},[]);if(location.pathname==='/dashboard')return user?<Dashboard user={user} onLogout={async()=>{await fetch('/api/logout',{method:'POST'});location.href='/'}}/>:<Home/>;return <Home/>}createRoot(document.getElementById('root')).render(<Root/>);
